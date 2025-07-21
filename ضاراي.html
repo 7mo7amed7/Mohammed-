@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohmmed Ahmed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #333;
+        }
+        nav a {
+            color: white;
+            padding: 1rem;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background: #4CAF50;
+        }
+        section {
+            padding: 2rem;
+            margin: 1rem auto;
+            max-width: 800px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>مرحبًا بكم في موقعي الشخصي</h1>
+        <p>هذا موقعي حيث أشارك أعمالي وأدواتي المفضلة!</p>
+    </header>
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#portfolio">الأعمال</a>
+        <a href="#tools">الأدوات</a>
+        <a href="#contact">التواصل</a>
+    </nav>
+    <section id="home">
+        <h2>محمد احمد الطيب حمدالنيل </h2>
+        <p>أنا  مهتم بمجالات البرمحة وتطوير مواقع الويب  .</p>
+    </section>
+    <section id="portfolio">
+        <h2>الأعمال السابقة</h2>
+        <p>هنا بعض المشاريع التي قمت بها:</p>
+        <ul>
+            <li>مشروع لمنظمة خيرية </li>
+            <li>مشروع لشركة تجارية </li>
+        </ul>
+    </section>
+    <section id="tools">
+        <h2>الأدوات الحسابية</h2>
+        <div>
+            <h3>حساب حجم الأسطوانة</h3>
+            <input type="number" id="radius" placeholder="نصف القطر">
+            <input type="number" id="height" placeholder="الارتفاع">
+            <button onclick="calculateCylinder()">احسب</button>
+            <p id="cylinderResult"></p>
+        </div>
+        <div>
+            <h3>حل معادلة تربيعية</h3>
+            <input type="number" id="a" placeholder="a">
+            <input type="number" id="b" placeholder="b">
+            <input type="number" id="c" placeholder="c">
+            <button onclick="solveQuadratic()">حل</button>
+            <p id="quadraticResult"></p>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>تواصل معي</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="اسمك" required>
+            <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
+            <textarea name="message" placeholder="رسالتك" required></textarea>
+            <button type="submit">إرسال</button>
+        </form>
+    </section>
+    <footer>
+        <p>© 2023 جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // حساب حجم الأسطوانة
+        function calculateCylinder() {
+            const radius = parseFloat(document.getElementById('radius').value);
+            const height = parseFloat(document.getElementById('height').value);
+            const volume = Math.PI * radius * radius * height;
+            document.getElementById('cylinderResult').innerText = `الحجم: ${volume.toFixed(2)}`;
+        }
+
+        // حل المعادلة التربيعية
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            const discriminant = b * b - 4 * a * c;
+            let result;
+            if (discriminant > 0) {
+                const root1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+                const root2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+                result = `الجذور: ${root1.toFixed(2)}, ${root2.toFixed(2)}`;
+            } else if (discriminant === 0) {
+                const root = -b / (2 * a);
+                result = `جذر مكرر: ${root.toFixed(2)}`;
+            } else {
+                result = "لا يوجد جذور حقيقية";
+            }
+            document.getElementById('quadraticResult').innerText = result;
+        }
+
+        // رسالة ترحيبية
+        alert("أهلاً وسهلاً بكم في موقعي!");
+
+        // منع إعادة إرسال النموذج
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert("تم إرسال الرسالة بنجاح!");
+            this.reset();
+        });
+    </script>
+</body>
+</html>
